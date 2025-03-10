@@ -1,10 +1,11 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './styles/index.css';
-import Home from './pages/Home';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";  // Importando o Router
+import Site from "./pages/Site";  // Importando o componente Site
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <Home />
-  </StrictMode>,
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <BrowserRouter>
+    <Site />  {/* O componente Site é renderizado */}
+  </BrowserRouter>
 );
