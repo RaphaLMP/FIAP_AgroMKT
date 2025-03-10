@@ -22,7 +22,7 @@ const Navbar = () => {
 
           <div className="hidden md:flex space-x-8 absolute left-1/2 transform -translate-x-1/2">
             <a href="#" className="hover:text-gray-300">Início</a>
-            <a href="#" className="hover:text-gray-300">Doação</a>
+            <a href="/tela_doacao" className="hover:text-gray-300">Doação</a>
             <a href="#" className="hover:text-gray-300">Contato</a>
 
            <div className="relative">
@@ -50,12 +50,12 @@ const Navbar = () => {
               </button>
 
               {isDropdownOpen && (
-                <ul className="dropdown-menu absolute right-0 mt-2 w-48 bg-gray-800 text-white rounded-lg shadow-lg">
-                  <li><a className="dropdown-item block px-4 py-2 hover:bg-gray-700" href="#">Exemplo 1</a></li>
-                  <li><a className="dropdown-item block px-4 py-2 hover:bg-gray-700" href="#">Exemplo 2</a></li>
-                  <li><a className="dropdown-item block px-4 py-2 hover:bg-gray-700" href="#">Exemplo 3</a></li>
-                </ul>
-              )}
+              <ul className="dropdown-menu absolute right-0 mt-2 w-48 bg-gray-800 text-white rounded-lg shadow-lg z-50">
+                <li><a className="dropdown-item block px-4 py-2 hover:bg-gray-700" href="#">Exemplo 1</a></li>
+                <li><a className="dropdown-item block px-4 py-2 hover:bg-gray-700" href="#">Exemplo 2</a></li>
+                <li><a className="dropdown-item block px-4 py-2 hover:bg-gray-700" href="#">Exemplo 3</a></li>
+              </ul>
+            )}
             </div>
           </div>
 
@@ -81,7 +81,7 @@ const Navbar = () => {
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white text-gray-900 rounded-lg shadow-lg">
+                  <div className="absolute right-0 mt-2 w-48 bg-white text-gray-900 rounded-lg shadow-lg z-50">
                     <a href="#" className="block px-4 py-2 hover:bg-gray-200">Perfil</a>
                     <a href="#" className="block px-4 py-2 hover:bg-gray-200">Configurações</a>
                     <div className="border-t"></div>

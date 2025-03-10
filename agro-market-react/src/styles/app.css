@@ -502,8 +502,12 @@ html {
     }
 }
 
-.carousel-arrow {
-    fill: #ffffff; /* Cor clara para as setas */
+/* Carrossel fixado no topo */
+#animation-carousel {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    z-index: -1; /* Certifique-se de que tenha um valor maior que o da navbar */
   }
   
-

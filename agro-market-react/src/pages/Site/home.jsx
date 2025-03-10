@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
+import Footer from "../../components/footer"; // Importe o Footer
 
 const Home = () => {
-
   useEffect(() => {
-
     const items = document.querySelectorAll('[data-carousel-item]');
     const prevButton = document.querySelector('[data-carousel-prev]');
     const nextButton = document.querySelector('[data-carousel-next]');
@@ -34,9 +33,8 @@ const Home = () => {
 
   return (
     <div>
-      <div id="animation-carousel" className="relative w-full" data-carousel="static">
-        {/* Carousel wrapper */}
-        <div className="relative h-56 overflow-hidden  md:h-96">
+      <div id="animation-carousel" className="relative w-full fixed top-0 left-0 z-100" data-carousel="static">
+        <div className="relative h-56 overflow-hidden md:h-96">
           {/* Item 1 */}
           <div className="hidden duration-200 ease-in-out transform transition-all" data-carousel-item>
             <img
@@ -54,7 +52,7 @@ const Home = () => {
             />
           </div>
           {/* Item 3 */}
-          <div className="hidden duration-200 ease-linear " data-carousel-item>
+          <div className="hidden duration-200 ease-linear" data-carousel-item>
             <img
               src="/images/img3.jpg"
               className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
@@ -63,7 +61,6 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Slider controls */}
         <button
           type="button"
           className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"

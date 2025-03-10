@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="py-5 my-5 border-t flex flex-col items-center">
-      {/* Logo e Copyright */}
+
       <div className="w-full md:w-1/4 flex flex-col items-center mb-3">
         <a href="/" className="flex items-center mb-3">
           <img src="images/campos.png" alt="Logo" className="w-10 h-10 me-2" />
@@ -11,7 +11,6 @@ const Footer = () => {
         </a>
       </div>
 
-      {/* Suporte */}
       <div className="w-full sm:w-1/3 md:w-1/5 text-center mb-3">
         <h5 className="font-semibold">Suporte</h5>
         <ul className="flex flex-col items-center">
@@ -20,7 +19,6 @@ const Footer = () => {
         </ul>
       </div>
 
-      {/* Contato */}
       <div className="w-full sm:w-1/3 md:w-1/5 text-center mb-3">
         <h5 className="font-semibold">Contato</h5>
         <ul className="flex flex-col items-center">
@@ -29,7 +27,6 @@ const Footer = () => {
         </ul>
       </div>
 
-      {/* Redes Sociais */}
       <div className="w-full md:w-1/4 text-center">
         <h5 className="font-semibold">Redes Sociais</h5>
         <div className="flex justify-center gap-3">
