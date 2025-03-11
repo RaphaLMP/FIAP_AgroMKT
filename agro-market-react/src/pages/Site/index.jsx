@@ -4,7 +4,7 @@ import '../../styles/index.css';
 import 'flowbite';
 
 import Navbar from "../../components/navbar";
-import Footer from "../../components/footer";
+import Chatbot from "../../components/chatbot";
 import Home from "./home";
 import Cadastro from "./cadastro";
 import Login from "./login";
@@ -16,6 +16,7 @@ const Site = () => {
   return (
     <div>
       <Navbar />
+      <Chatbot />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="cadastro" element={<Cadastro />} />

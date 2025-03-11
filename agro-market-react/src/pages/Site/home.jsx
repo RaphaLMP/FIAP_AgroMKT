@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Footer from "../../components/footer";
 import Card_Filter from "../../components/cardfilter";
 import Carousel from "../../components/carousel";
+import BackToTop from "../../components/backtotop";
 
 const ProductCard = ({ src, title, stock, date }) => {
   return (
@@ -105,8 +106,76 @@ const Home = () => {
           </div>
         </div>
 
-      </div>
+        <div className="row justify-content-center mt-4">
+          <div className="col-12 text-center">
+            <h2>Assista ao vídeo</h2>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/nZye2JOPdHE"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="mx-auto" // Centraliza o iframe
+            />
+          </div>
+        </div>
 
+        <div className="flex justify-center mt-5" id="faleConosco"> {/* Flexbox para centralizar */}
+          <div className="max-w-md w-full"> {/* Limita a largura e centraliza */}
+            <h2 className="text-center mb-4">Fale Conosco</h2> {/* Centraliza o título */}
+            <form id="contactForm">
+
+              <div className="mb-6">
+                <label htmlFor="inputName" className="block text-sm font-medium text-gray-700">Nome Completo</label>
+                <input
+                  type="text"
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                  id="inputName"
+                  placeholder="Digite seu nome completo"
+                  required
+                />
+                <p className="mt-1 text-xs text-gray-500">Seu nome completo deve incluir pelo menos um sobrenome.</p>
+              </div>
+
+              <div className="mb-6">
+                <label htmlFor="inputEmail" className="block text-sm font-medium text-gray-700">Endereço de Email</label>
+                <input
+                  type="email"
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                  id="inputEmail"
+                  placeholder="Digite seu email"
+                  required
+                />
+                <p className="mt-1 text-xs text-gray-500">Nunca compartilharemos seu email com ninguém.</p>
+              </div>
+
+              <div className="mb-6">
+                <label htmlFor="inputMessage" className="block text-sm font-medium text-gray-700">Descrição da Mensagem</label>
+                <textarea
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                  id="inputMessage"
+                  rows="4"
+                  placeholder="Escreva sua mensagem (entre 30 e 500 caracteres)"
+                  required
+                  minLength="30"
+                  maxLength="500"
+                />
+                <p className="mt-1 text-xs text-gray-500">Sua mensagem deve ter entre 30 e 500 caracteres.</p>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              >
+                Enviar
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <BackToTop />
       <Footer />
     </div>
   );
