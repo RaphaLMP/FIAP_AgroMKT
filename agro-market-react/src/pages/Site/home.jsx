@@ -1,11 +1,42 @@
 import React, { useEffect } from "react";
-import Footer from "../../components/footer"; // Importe o Footer
+import Footer from "../../components/footer";
+import Card_Filter from "../../components/cardfilter";
+import Carousel from "../../components/carousel";
+
+const ProductCard = ({ src, title, stock, date }) => {
+  return (
+    <div className="bg-white shadow-lg rounded-lg overflow-hidden product">
+      <img src={`images/${src}`} className="w-full h-56 object-cover mt-4" alt={title} />
+      <div className="p-4">
+        <p className="text-lg font-semibold">{title}</p>
+        <p className="text-gray-600">{stock} Disponíveis</p>
+        <p className="text-sm text-gray-500">Validade: {date}</p>
+        <div className="mt-3 text-center">
+          <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+            Ver Mais
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+const ProductList = ({ products }) => {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
+      {products.map((product, index) => (
+        <ProductCard key={index} {...product} />
+      ))}
+    </div>
+  );
+};
 
 const Home = () => {
   useEffect(() => {
-    const items = document.querySelectorAll('[data-carousel-item]');
-    const prevButton = document.querySelector('[data-carousel-prev]');
-    const nextButton = document.querySelector('[data-carousel-next]');
+    const items = document.querySelectorAll("[data-carousel-item]");
+    const prevButton = document.querySelector("[data-carousel-prev]");
+    const nextButton = document.querySelector("[data-carousel-next]");
     let currentItem = 0;
 
     const showNextItem = () => {
@@ -16,89 +47,67 @@ const Home = () => {
 
     const showPrevItem = () => {
       items[currentItem].classList.add("hidden");
-      currentItem = (currentItem - 1 + items.length) % items.length; 
+      currentItem = (currentItem - 1 + items.length) % items.length;
       items[currentItem].classList.remove("hidden");
     };
 
-    if (prevButton) prevButton.addEventListener('click', showPrevItem);
-    if (nextButton) nextButton.addEventListener('click', showNextItem);
+    if (prevButton) prevButton.addEventListener("click", showPrevItem);
+    if (nextButton) nextButton.addEventListener("click", showNextItem);
 
     items[currentItem].classList.remove("hidden");
 
     return () => {
-      if (prevButton) prevButton.removeEventListener('click', showPrevItem);
-      if (nextButton) nextButton.removeEventListener('click', showNextItem);
+      if (prevButton) prevButton.removeEventListener("click", showPrevItem);
+      if (nextButton) nextButton.removeEventListener("click", showNextItem);
     };
   }, []);
 
+  const mainProducts = [
+    { src: "milho.jpg", title: "Milho verde", stock: "30 Caixas", date: "05/04/2025" },
+    { src: "pepino.jpg", title: "Pepino", stock: "80 Caixas", date: "05/04/2025" },
+    { src: "cenoura.jpg", title: "Cenoura", stock: "40 Caixas", date: "05/04/2025" }
+  ];
+
+  const specialProducts = [
+    { src: "brocolis.jpg", title: "Brócolis Ninja", stock: "50 Unidades", date: "07/12/2024" },
+    { src: "cebola.jpg", title: "Cebola", stock: "200 Caixas", date: "01/01/2025" }
+  ];
+
   return (
     <div>
-      <div id="animation-carousel" className="relative w-full fixed top-0 left-0 z-100" data-carousel="static">
-        <div className="relative h-56 overflow-hidden md:h-96">
-          {/* Item 1 */}
-          <div className="hidden duration-200 ease-in-out transform transition-all" data-carousel-item>
-            <img
-              src="/images/img1.jpg"
-              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-              alt="Imagem 1"
-            />
-          </div>
-          {/* Item 2 */}
-          <div className="hidden duration-200 ease-linear" data-carousel-item>
-            <img
-              src="/images/img2.jpg"
-              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-              alt="Imagem 2"
-            />
-          </div>
-          {/* Item 3 */}
-          <div className="hidden duration-200 ease-linear" data-carousel-item>
-            <img
-              src="/images/img3.jpg"
-              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-              alt="Imagem 3"
-            />
+      <Carousel />
+      <div className="container mx-auto px-4 py-8 mt-24">
+        <Card_Filter />
+
+        <div className="relative p-2 p-md-3 m-md-3 text-center bg-green pt-40 mt-10">
+          <img src="images/mercadofrutas.jpg" alt="Anúncio" className="img-overlay" style={{ filter: "brightness(0.6)" }}
+          />
+          <div className="col-md-6 p-lg-4 mx-auto my-3">
+            <h1 className="display-4 fw-bold text-white">Anuncie Aqui</h1>
+            <h3 className="fw-normal mb-2 text-white">As melhores frutas e verduras do mercado</h3>
           </div>
         </div>
 
-        <button
-          type="button"
-          className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-          data-carousel-prev
-        >
-          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 bg-white-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-100/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg
-              className="w-4 h-4 text-white dark:text-gray-100 rtl:rotate-180"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 6 10"
-            >
-              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 1 1 5l4 4" />
-            </svg>
-            <span className="sr-only">Previous</span>
-          </span>
-        </button>
+        <ProductList products={mainProducts} />
 
-        <button
-          type="button"
-          className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-          data-carousel-next
-        >
-          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 white:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-100/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg
-              className="w-4 h-4 text-white dark:text-gray-100 rtl:rotate-180"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 6 10"
-            >
-              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4" />
-            </svg>
-            <span className="sr-only">Next</span>
-          </span>
-        </button>
+        <div className="relative p-2 p-md-3 m-md-3 text-center bg-green pt-40 mt-10">
+          <img src="images/mercado.jpg" alt="Anúncio" className="img-overlay" style={{ filter: "brightness(0.6)" }}
+          />
+          <div className="col-md-6 p-lg-4 mx-auto my-3"></div>
+        </div>
+
+        <div className="flex gap-6 mt-8">
+          <div className="w-1/2">
+            <ProductCard {...specialProducts[0]} />
+          </div>
+          <div className="w-1/2">
+            <ProductCard {...specialProducts[1]} />
+          </div>
+        </div>
+
       </div>
+
+      <Footer />
     </div>
   );
 };
