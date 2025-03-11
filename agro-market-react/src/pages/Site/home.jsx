@@ -13,7 +13,7 @@ const ProductCard = ({ src, title, stock, date }) => {
         <p className="text-gray-600">{stock} Disponíveis</p>
         <p className="text-sm text-gray-500">Validade: {date}</p>
         <div className="mt-3 text-center">
-          <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+          <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
             Ver Mais
           </button>
         </div>
@@ -131,7 +131,7 @@ const Home = () => {
                 <label htmlFor="inputName" className="block text-sm font-medium text-gray-700">Nome Completo</label>
                 <input
                   type="text"
-                  className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-600"
                   id="inputName"
                   placeholder="Digite seu nome completo"
                   required
@@ -143,7 +143,7 @@ const Home = () => {
                 <label htmlFor="inputEmail" className="block text-sm font-medium text-gray-700">Endereço de Email</label>
                 <input
                   type="email"
-                  className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-600"
                   id="inputEmail"
                   placeholder="Digite seu email"
                   required
@@ -154,7 +154,7 @@ const Home = () => {
               <div className="mb-6">
                 <label htmlFor="inputMessage" className="block text-sm font-medium text-gray-700">Descrição da Mensagem</label>
                 <textarea
-                  className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-600"
                   id="inputMessage"
                   rows="4"
                   placeholder="Escreva sua mensagem (entre 30 e 500 caracteres)"

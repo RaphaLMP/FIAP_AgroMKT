@@ -9,7 +9,7 @@ const ProductCard = ({ image, title, quantity, expirationDate, category }) => {
         <p className="text-gray-600">{quantity} Disponíveis</p>
         <p className="text-sm text-gray-500">Validade: {expirationDate}</p>
         <div className="mt-3 text-center">
-          <button className="bg-green-500 text-white px-4 py-2 rounded">Ver Mais</button>
+          <button className="bg-green-600 text-white px-4 py-2 rounded">Ver Mais</button>
         </div>
       </div>
     </div>
@@ -34,30 +34,30 @@ const Card_Filter = () => {
     <div>
       <div className="text-center mb-6">
         <span 
-          className={`px-4 py-2 bg-gray-200 rounded cursor-pointer ${selectedCategory === 'all' ? 'bg-blue-500' : ''}`}
-          onClick={() => setSelectedCategory('all')}
+            className={`px-4 py-2 bg-gray-500 rounded cursor-pointer ${selectedCategory === 'all' ? 'bg-green-600' : ''} mx-2 text-white`}
+            onClick={() => setSelectedCategory('all')}
         >
-          Todos
+            Todos
         </span>
         <span 
-          className={`px-4 py-2 bg-gray-200 rounded cursor-pointer ${selectedCategory === 'frutas' ? 'bg-blue-500' : ''}`}
-          onClick={() => setSelectedCategory('frutas')}
+            className={`px-4 py-2 bg-gray-500 rounded cursor-pointer ${selectedCategory === 'frutas' ? 'bg-green-600' : ''} mx-2 text-white`}
+            onClick={() => setSelectedCategory('frutas')}
         >
-          Frutas
+            Frutas
         </span>
         <span 
-          className={`px-4 py-2 bg-gray-200 rounded cursor-pointer ${selectedCategory === 'legumes' ? 'bg-blue-500' : ''}`}
-          onClick={() => setSelectedCategory('legumes')}
+            className={`px-4 py-2 bg-gray-500 rounded cursor-pointer ${selectedCategory === 'legumes' ? 'bg-green-600' : ''} mx-2 text-white`}
+            onClick={() => setSelectedCategory('legumes')}
         >
-          Legumes
+            Legumes
         </span>
         <span 
-          className={`px-4 py-2 bg-gray-200 rounded cursor-pointer ${selectedCategory === 'graos' ? 'bg-blue-500' : ''}`}
-          onClick={() => setSelectedCategory('graos')}
+            className={`px-4 py-2 bg-gray-500 rounded cursor-pointer ${selectedCategory === 'graos' ? 'bg-green-600' : ''} mx-2 text-white`}
+            onClick={() => setSelectedCategory('graos')}
         >
-          Grãos
+            Grãos
         </span>
-      </div>
+        </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.filter(product => selectedCategory === 'all' || product.category === selectedCategory).map((product, index) => (
