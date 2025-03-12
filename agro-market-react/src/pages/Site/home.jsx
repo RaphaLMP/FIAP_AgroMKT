@@ -117,14 +117,14 @@ const Home = () => {
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              className="mx-auto" // Centraliza o iframe
+              className="mx-auto"
             />
           </div>
         </div>
 
-        <div className="flex justify-center mt-5" id="faleConosco"> {/* Flexbox para centralizar */}
-          <div className="max-w-md w-full"> {/* Limita a largura e centraliza */}
-            <h2 className="text-center mb-4">Fale Conosco</h2> {/* Centraliza o título */}
+        <div className="flex justify-center mt-5" id="faleConosco"> 
+          <div className="max-w-md w-full">
+            <h2 className="text-center mb-4">Fale Conosco</h2>
             <form id="contactForm">
 
               <div className="mb-6">
@@ -174,6 +174,7 @@ const Home = () => {
             </form>
           </div>
         </div>
+        
       </div>
       <BackToTop />
       <Footer />
