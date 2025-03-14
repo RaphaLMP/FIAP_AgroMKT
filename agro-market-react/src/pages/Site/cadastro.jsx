@@ -1,32 +1,105 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../../components/input";
-
+import Swal from 'sweetalert2'
 
 const Cadastro = () => {
+  const [user, setUser] = useState({
+    nome: '',
+    cpf: '',
+    nascimento: '',
+    email: '',
+    telefone: '',
+    senha: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const cleanFields = () => {
+    setUser({
+      nome: '',
+      cpf: '',
+      nascimento: '',
+      email: '',
+      telefone: '',
+      senha: ''
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Sua conta foi criada com sucesso!",
+      showConfirmButton: false,
+      timer: 1700
+    }).then(() => {
+      cleanFields();
+      location.reload()
+    });
+  };
+
   return (
     <div className="flex items-center justify-center w-full">
       <div className="flex items-center justify-center w-full sm:w-5/6 md:w-2/3 xl:w-1/3 p-6">
-        <form className="flex flex-col w-full xl:w-10/12 mx-auto  p-6 rounded-lg">
+        <form onSubmit={handleSubmit} className="flex flex-col w-full xl:w-10/12 mx-auto bg-white p-6 rounded-lg sm:shadow-lg lg:shadow-none">
           <h3 className="text-center text-2xl font-semibold mb-4">Crie sua conta</h3>
-
-          <Input inputType={"text"} labelInput={"Nome Completo"} placeholderText={"Digite o seu nome"} />
-          <Input inputType={"text"} labelInput={"CPF"} placeholderText={"000.000.000-00"} />
-          <Input inputType={"date"} labelInput={"Data de Nascimento"} />
-          <Input inputType={"email"} labelInput={"E-mail"} />
-          <Input inputType={"tel"} labelInput={"Telefone"} />
-          <Input inputType={"password"} labelInput={"Senha"} />
+          <Input
+            onChange={handleChange}
+            Inputname={"nome"}
+            inputType={"text"}
+            labelInput={"Nome Completo"}
+            placeholderText={"Digite o seu nome"}
+          />
+          <Input
+            onChange={handleChange}
+            Inputname={"cpf"}
+            inputType={"text"}
+            labelInput={"CPF"}
+            placeholderText={"000.000.000-00"}
+          />
+          <Input
+            onChange={handleChange}
+            Inputname={"nascimento"}
+            inputType={"date"}
+            labelInput={"Data de Nascimento"}
+          />
+          <Input
+            onChange={handleChange}
+            Inputname={"email"}
+            inputType={"email"}
+            labelInput={"E-mail"}
+          />
+          <Input
+            onChange={handleChange}
+            Inputname={"telefone"}
+            inputType={"tel"}
+            labelInput={"Telefone"}
+          />
+          <Input
+            onChange={handleChange}
+            Inputname={"senha"}
+            inputType={"password"}
+            labelInput={"Senha"}
+          />
 
           <button
+          
             href="tela_usuario"
             className="w-full bg-indigo-600 text-white p-3 rounded-lg mt-4 hover:bg-indigo-700 text-center"
           >
             Criar
           </button>
 
-
           <div className="flex items-center justify-between mt-6">
             <div className="border w-16"></div>
-            <p className="text-sm text-gray-600">Ou crie sua conta com o Google</p>
+            <p className="text-sm text-gray-600">Entre com o Google</p>
             <div className="border w-16"></div>
           </div>
 
@@ -49,11 +122,16 @@ const Cadastro = () => {
             </a>
           </div>
         </form>
-
-
       </div>
-      <div className="hidden lg:flex w-9/12" style={{ backgroundImage: "url('/images/agricultura.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}></div>
-
+      <div
+        className="hidden lg:flex w-9/12"
+        style={{
+          backgroundImage: "url('/images/agricultura.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          minHeight: '100vh',
+        }}
+      ></div>
     </div>
   );
 };

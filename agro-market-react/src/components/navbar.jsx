@@ -19,7 +19,7 @@ const Navbar = () => {
           </div>
           
           <div className="hidden md:flex space-x-8 absolute left-1/2 transform -translate-x-1/2">
-            <a href="#" className="hover:text-gray-300">Início</a>
+            <a href="/" className="hover:text-gray-300">Início</a>
             <a href="/tela_doacao" className="hover:text-gray-300">Doação</a>
             <a href="#" className="hover:text-gray-300">Contato</a>
           </div>
