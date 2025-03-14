@@ -81,11 +81,15 @@ const Home = () => {
         <Card_Filter />
 
         <div className="relative p-2 p-md-3 m-md-3 text-center bg-green pt-40 mt-10">
-          <img src="images/mercadofrutas.jpg" alt="Anúncio" className="img-overlay" style={{ filter: "brightness(0.6)" }}
+          <img
+            src="images/mercadofrutas.jpg"
+            alt="Anúncio"
+            className="img-overlay"
+            style={{ filter: "brightness(0.6)" }}
           />
-          <div className="col-md-6 p-lg-4 mx-auto my-3">
-            <h1 className="display-4 fw-bold text-white">Anuncie Aqui</h1>
-            <h3 className="fw-normal mb-2 text-white">As melhores frutas e verduras do mercado</h3>
+          <div className="col-md-6 p-lg-4 mx-auto my-3" style={{ position: 'relative', top: '-20px' }}>
+            <h1 className="display-3 fw-bold text-white" style={{ fontSize: '3.5rem' }}>Anuncie Aqui</h1>
+            <h3 className="fw-normal mb-2 text-white" style={{ fontSize: '2rem' }}>As melhores frutas e verduras do mercado</h3>
           </div>
         </div>
 
@@ -122,7 +126,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="flex justify-center mt-5" id="faleConosco"> 
+        <div className="flex justify-center mt-5" id="faleConosco">
           <div className="max-w-md w-full">
             <h2 className="text-center mb-4">Fale Conosco</h2>
             <form id="contactForm">
@@ -174,7 +178,7 @@ const Home = () => {
             </form>
           </div>
         </div>
-        
+
       </div>
       <BackToTop />
       <Footer />
