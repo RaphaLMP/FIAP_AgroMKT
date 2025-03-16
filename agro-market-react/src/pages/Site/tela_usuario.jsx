@@ -30,6 +30,7 @@ const Tela_Usuario = () => {
 
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'top',
@@ -49,8 +50,6 @@ const Tela_Usuario = () => {
   useEffect(() => {
     // Marca que estamos no browser após a montagem do componente
     setIsBrowser(true);
-    
-    // Não usamos mais o código manual do canvas/Chart.js
   }, []);
 
   return (
@@ -58,7 +57,7 @@ const Tela_Usuario = () => {
       <div className="container mx-auto px-4 py-8 mt-24">
         {/* Gráfico de Vendas usando React-ChartJS-2 */}
         {isBrowser && (
-          <div style={{ height: '300px', marginBottom: '40px', marginTop: '60px' }}>
+          <div className="w-full max-w-4xl mx-auto" style={{ height: '400px', marginBottom: '40px', marginTop: '60px' }}>
             <Line data={chartData} options={chartOptions} />
           </div>
         )}
