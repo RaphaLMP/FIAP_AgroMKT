@@ -1,16 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Line } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
 import DashboardCard from "../../components/dashboardcard";
 import Footer from "../../components/footer";
 import Card_Filter from "../../components/cardfilter";
-import Carousel from "../../components/carousel";
 import BackToTop from "../../components/backtotop";
 
 const Tela_Usuario = () => {
+  useEffect(() => {
+    const ctx = document.getElementById('salesChart').getContext('2d');
+    new ChartJS(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'], 
+        datasets: [
+          {
+            label: 'Vendas Mensais',
+            data: [1500, 2000, 1800, 2200, 2500, 3000],
+            borderColor: 'rgb(75, 192, 192)',
+            fill: false,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+  }, []);
+
   return (
     <div>
       <div className="container mx-auto px-4 py-8 mt-24">
         {/* Gráfico de Vendas */}
-        <canvas id="salesChart"></canvas>
+        <canvas id="salesChart" style={{ marginBottom: '40px', marginTopm: '60px'}}></canvas>
 
         {/* Cards de Informações */}
         <div className="container text-center">
@@ -71,7 +101,6 @@ const Tela_Usuario = () => {
         </div>
 
         {/* Seção de Produtos Anunciados */}
-
         <h2 className="col-12 text-center row justify-content-center mt-4">Seus Produtos Anunciados</h2>
         <div className="container mx-auto px-4 py-8 mt-24">
           <Card_Filter />
@@ -80,7 +109,6 @@ const Tela_Usuario = () => {
       <BackToTop />
       <Footer />
     </div>
-
   );
 };
 
