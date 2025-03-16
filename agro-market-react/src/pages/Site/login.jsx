@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Input from "../../components/input";
 
 const Login = () => {
-  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,9 +11,31 @@ const Login = () => {
     // Login imediato sem simulação de demora
     localStorage.setItem("isLoggedIn", "true");
     
-    // Redireciona para a tela do usuário imediatamente
-    navigate("/tela_usuario");
+    // Marca como logado para renderizar o redirecionamento
+    setIsLoggedIn(true);
   };
+
+  // Se estiver logado, renderiza o componente com o redirecionamento
+  if (isLoggedIn) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen bg-white p-8">
+        <h2 className="text-2xl font-semibold mb-4">Login realizado com sucesso!</h2>
+        <p className="mb-6">Você será redirecionado em instantes...</p>
+        <Link 
+          to="/tela_usuario" 
+          className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700"
+          onClick={() => {
+            // Forçar redirecionamento via JavaScript como fallback
+            setTimeout(() => {
+              window.location.href = "/tela_usuario";
+            }, 100);
+          }}
+        >
+          Ir para Tela do Usuário
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="flex items-center justify-center h-screen w-full">
