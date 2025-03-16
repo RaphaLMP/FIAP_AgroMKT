@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 
@@ -10,37 +10,58 @@ import Card_Filter from "../../components/cardfilter";
 import BackToTop from "../../components/backtotop";
 
 const Tela_Usuario = () => {
+  // Estado para controlar se está no lado do cliente (browser)
+  const [isBrowser, setIsBrowser] = useState(false);
+
+  // Dados para o gráfico React-ChartJS-2
+  const chartData = {
+    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+    datasets: [
+      {
+        label: 'Vendas Mensais',
+        data: [1500, 2000, 1800, 2200, 2500, 3000],
+        borderColor: 'rgb(75, 192, 192)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        fill: false,
+        tension: 0.1
+      },
+    ],
+  };
+
+  const chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Gráfico de Vendas Mensais'
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  };
+
   useEffect(() => {
-    const ctx = document.getElementById('salesChart').getContext('2d');
-    new ChartJS(ctx, {
-      type: 'line',
-      data: {
-        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'], 
-        datasets: [
-          {
-            label: 'Vendas Mensais',
-            data: [1500, 2000, 1800, 2200, 2500, 3000],
-            borderColor: 'rgb(75, 192, 192)',
-            fill: false,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
-    });
+    // Marca que estamos no browser após a montagem do componente
+    setIsBrowser(true);
+    
+    // Não usamos mais o código manual do canvas/Chart.js
   }, []);
 
   return (
     <div>
       <div className="container mx-auto px-4 py-8 mt-24">
-        {/* Gráfico de Vendas */}
-        <canvas id="salesChart" style={{ marginBottom: '40px', marginTopm: '60px'}}></canvas>
+        {/* Gráfico de Vendas usando React-ChartJS-2 */}
+        {isBrowser && (
+          <div style={{ height: '300px', marginBottom: '40px', marginTop: '60px' }}>
+            <Line data={chartData} options={chartOptions} />
+          </div>
+        )}
 
         {/* Cards de Informações */}
         <div className="container text-center">
