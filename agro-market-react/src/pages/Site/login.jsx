@@ -3,21 +3,16 @@ import { useNavigate } from "react-router-dom";
 import Input from "../../components/input";
 
 const Login = () => {
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoggingIn(true); // Define o estado como 'logando'
-
-    // Simula um tempo de espera para o login (substitua com uma chamada de API real)
-    setTimeout(() => {
-      // Após a autenticação (simulada aqui), você salva no localStorage
-      localStorage.setItem("isLoggedIn", "true");
-
-      // Redireciona para a tela do usuário
-      navigate("/tela_usuario");
-    }, 1000); // Simula um delay de 1 segundo (pode ser ajustado conforme necessário)
+    
+    // Login imediato sem simulação de demora
+    localStorage.setItem("isLoggedIn", "true");
+    
+    // Redireciona para a tela do usuário imediatamente
+    navigate("/tela_usuario");
   };
 
   return (
@@ -37,9 +32,8 @@ const Login = () => {
           <button
             type="submit"
             className="w-full bg-indigo-600 text-white p-3 rounded-lg mt-4 hover:bg-indigo-700 text-center"
-            disabled={isLoggingIn} // Desabilita o botão enquanto está logando
           >
-            {isLoggingIn ? "Logando..." : "Login"}
+            Login
           </button>
 
           <div className="flex items-center text-center justify-between mt-6">
