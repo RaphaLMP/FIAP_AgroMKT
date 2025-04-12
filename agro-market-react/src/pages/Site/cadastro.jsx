@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "../../components/input";
 import Swal from 'sweetalert2'
+import {useNavigate } from "react-router-dom";
 
 const Cadastro = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(user))
+
+  })
+
+  
   const [user, setUser] = useState({
     nome: '',
     cpf: '',
@@ -12,6 +21,7 @@ const Cadastro = () => {
     senha: '',
   });
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser((prevData) => ({
@@ -20,16 +30,6 @@ const Cadastro = () => {
     }));
   };
 
-  const cleanFields = () => {
-    setUser({
-      nome: '',
-      cpf: '',
-      nascimento: '',
-      email: '',
-      telefone: '',
-      senha: ''
-    });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,15 +40,15 @@ const Cadastro = () => {
       showConfirmButton: false,
       timer: 1700
     }).then(() => {
-      cleanFields();
-      location.reload()
+      navigate("/login");
+
     });
   };
 
   return (
     <div className="flex items-center justify-center w-full">
       <div className="flex items-center justify-center w-full sm:w-5/6 md:w-2/3 xl:w-1/3 p-6">
-        <form onSubmit={handleSubmit} className="flex flex-col w-full xl:w-10/12 mx-auto bg-white p-6 rounded-lg sm:shadow-lg lg:shadow-none">
+        <form onSubmit={handleSubmit} className="flex flex-col w-full xl:w-10/12 mx-auto  bg-white p-6 rounded-lg sm:shadow-lg lg:shadow-none">
           <h3 className="text-center text-2xl font-semibold mb-4">Crie sua conta</h3>
           <Input
             onChange={handleChange}

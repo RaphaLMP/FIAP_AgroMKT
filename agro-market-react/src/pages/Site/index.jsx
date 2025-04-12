@@ -10,19 +10,20 @@ import Cadastro from "./cadastro";
 import Login from "./login";
 import Tela_Doacao from "./tela_doacao";
 import Tela_Usuario from "./tela_usuario";
+import Perfil from "../perfil";
 
 const Site = () => {
-
   return (
     <div>
       <Navbar />
       <Chatbot />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="cadastro" element={<Cadastro />} />
-        <Route path="login" element={<Login />} />
-        <Route path="tela_doacao" element={<Tela_Doacao />} />
-        <Route path="tela_usuario" element={<Tela_Usuario />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/tela_doacao" element={<Tela_Doacao />} />
+        <Route path="/tela_usuario" element={<Tela_Usuario />} />
+        <Route path="/perfil" element={<Perfil />} />
         {/* Outras rotas podem ser definidas aqui */}
       </Routes>
     </div>

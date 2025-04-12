@@ -1,16 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
 import DashboardCard from "../../components/dashboardcard";
 import Footer from "../../components/footer";
 import Card_Filter from "../../components/cardfilter";
-import Carousel from "../../components/carousel";
 import BackToTop from "../../components/backtotop";
 
 const Tela_Usuario = () => {
+  // Estado para controlar se está no lado do cliente (browser)
+  const [isBrowser, setIsBrowser] = useState(false);
+
+  // Dados para o gráfico React-ChartJS-2
+  const chartData = {
+    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+    datasets: [
+      {
+        label: 'Vendas Mensais',
+        data: [1500, 2000, 1800, 2200, 2500, 3000],
+        borderColor: 'rgb(75, 192, 192)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        fill: false,
+        tension: 0.1
+      },
+    ],
+  };
+
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Gráfico de Vendas Mensais'
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  };
+
+  useEffect(() => {
+    // Marca que estamos no browser após a montagem do componente
+    setIsBrowser(true);
+  }, []);
+
   return (
     <div>
       <div className="container mx-auto px-4 py-8 mt-24">
-        {/* Gráfico de Vendas */}
-        <canvas id="salesChart"></canvas>
+        {/* Gráfico de Vendas usando React-ChartJS-2 */}
+        {isBrowser && (
+          <div className="w-full max-w-4xl mx-auto" style={{ height: '400px', marginBottom: '40px', marginTop: '60px' }}>
+            <Line data={chartData} options={chartOptions} />
+          </div>
+        )}
 
         {/* Cards de Informações */}
         <div className="container text-center">
@@ -71,7 +121,6 @@ const Tela_Usuario = () => {
         </div>
 
         {/* Seção de Produtos Anunciados */}
-
         <h2 className="col-12 text-center row justify-content-center mt-4">Seus Produtos Anunciados</h2>
         <div className="container mx-auto px-4 py-8 mt-24">
           <Card_Filter />
@@ -80,7 +129,6 @@ const Tela_Usuario = () => {
       <BackToTop />
       <Footer />
     </div>
-
   );
 };
 
