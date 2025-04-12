@@ -10,7 +10,6 @@ const Cadastro = () => {
     localStorage.setItem('user', JSON.stringify(user))
 
   })
-
   
   const [user, setUser] = useState({
     nome: '',

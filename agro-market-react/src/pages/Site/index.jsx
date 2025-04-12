@@ -10,7 +10,7 @@ import Cadastro from "./cadastro";
 import Login from "./login";
 import Tela_Doacao from "./tela_doacao";
 import Tela_Usuario from "./tela_usuario";
-import Perfil from "../perfil";
+import Perfil from "./perfil";
 
 const Site = () => {
   return (

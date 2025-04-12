@@ -27,8 +27,6 @@ const Login = () => {
     }));
   };
  
-  
-
   const cleanFields = () => {
     setUserLogin({
       cpf: '',
