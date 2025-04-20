@@ -75,8 +75,8 @@ const Login = () => {
           <Input
             labelInput={"Digite a senha"}
             placeholderText={"*********"}
-            type="password"
-            Inputname="senha"
+            type={"password"}
+            Inputname={"senha"}
             value={userLogin.senha}
             onChange={handleChange}
           />
