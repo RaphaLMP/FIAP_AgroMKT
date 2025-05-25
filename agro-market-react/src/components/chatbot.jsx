@@ -21,6 +21,12 @@ const ChatBot = () => {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      sendMessage();
+    }
+  };
+
   const sendInitialMessage = (message) => {
     let response = '';
     switch (message) {
@@ -53,49 +59,103 @@ const ChatBot = () => {
 
   return (
     <div className="relative">
-      <div className="fixed bottom-24 right-5 cursor-pointer z-50" onClick={() => setShowModal(true)}>
-        <img src="images/bate-papo.png" alt="Ícone para abrir modal" className="w-12 h-12" />
+      {/* Ícone do chat - posicionamento responsivo */}
+      <div 
+        className="fixed bottom-24 right-1 cursor-pointer p=3 z-40 hover:scale-110 transition-transform" 
+        onClick={() => setShowModal(true)}
+      >
+        <img src="images/bate-papo.png" alt="Ícone para abrir modal" className="w-10 h-10 sm:w-12 sm:h-12" />
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50" onClick={() => setShowModal(false)}>
-          <div className="bg-white p-6 rounded-lg w-[80%] md:w-[600px] shadow-lg" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-center mb-4 border-b pb-2">
-              <img src="images/campos.png" alt="Logo" className="w-10 h-10 mr-2" />
-              <h5 className="text-lg font-semibold text-center">Atendimento Virtual - AgroMarket</h5>
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-[9999] p-2 sm:p-4">
+          <div 
+            className="bg-white rounded-lg w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl max-h-[90vh] flex flex-col shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header do modal */}
+            <div className="flex items-center justify-between p-3 sm:p-4 border-b bg-gray-50 rounded-t-lg">
+              <div className="flex items-center">
+                <img src="images/campos.png" alt="Logo" className="w-8 h-8 sm:w-10 sm:h-10 mr-2" />
+                <h5 className="text-sm sm:text-lg font-semibold">Atendimento Virtual</h5>
+              </div>
+              <button 
+                onClick={() => setShowModal(false)}
+                className="text-gray-500 hover:text-gray-700 text-xl sm:text-2xl font-bold p-1"
+              >
+                ×
+              </button>
             </div>
 
-            <section className="text-center mb-4">
-              <p className="m-0">Olá, sou seu atendente virtual. Como posso te ajudar?</p>
+            {/* Mensagem de boas-vindas */}
+            <section className="text-center p-3 sm:p-4 bg-blue-50">
+              <p className="text-sm sm:text-base text-gray-700">
+                Olá, sou seu atendente virtual. Como posso te ajudar?
+              </p>
             </section>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-4 text-center">
-              {predefinedQuestions.map((option, index) => (
-                <button key={index} className="px-3 py-2 border rounded-lg text-sm bg-gray-200 hover:bg-gray-300 transition" onClick={() => sendInitialMessage(option.replace(/📌 |📦 |🌱 /, ''))}>
-                  {option}
-                </button>
-              ))}
+            {/* Botões de opções pré-definidas */}
+            <div className="p-3 sm:p-4 border-b">
+              <div className="flex flex-col sm:grid sm:grid-cols-1 md:grid-cols-3 gap-2">
+                {predefinedQuestions.map((option, index) => (
+                  <button 
+                    key={index} 
+                    className="px-3 py-2 border rounded-lg text-xs sm:text-sm bg-gray-100 hover:bg-gray-200 transition-colors text-left sm:text-center"
+                    onClick={() => sendInitialMessage(option.replace(/📌 |📦 |🌱 /, ''))}
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            <div className="chat-box border p-3 mb-4 h-60 overflow-y-auto bg-gray-100 rounded-lg">
-              {messages.map((message, index) => (
-                <div key={index} className={`p-2 rounded-lg my-1 ${message.sender === 'user' ? 'bg-blue-200 self-end text-right' : 'bg-gray-300 self-start text-left'}`}>
-                  {message.text}
+            {/* Área do chat - flexível */}
+            <div className="flex-1 overflow-hidden flex flex-col">
+              <div className="flex-1 p-3 sm:p-4 overflow-y-auto bg-gray-50 min-h-48 max-h-64 sm:max-h-80">
+                {messages.length === 0 ? (
+                  <div className="text-center text-gray-500 text-sm py-8">
+                    Escolha uma opção acima ou digite sua mensagem
+                  </div>
+                ) : (
+                  messages.map((message, index) => (
+                    <div 
+                      key={index} 
+                      className={`mb-3 ${message.sender === 'user' ? 'flex justify-end' : 'flex justify-start'}`}
+                    >
+                      <div 
+                        className={`p-2 sm:p-3 rounded-lg max-w-[80%] text-sm sm:text-base ${
+                          message.sender === 'user' 
+                            ? 'bg-blue-500 text-white rounded-br-none' 
+                            : 'bg-white text-gray-800 border rounded-bl-none shadow-sm'
+                        }`}
+                      >
+                        {message.text}
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+
+              {/* Input de mensagem */}
+              <div className="p-3 sm:p-4 border-t bg-white rounded-b-lg">
+                <div className="flex items-center gap-2">
+                  <input
+                    type="text"
+                    placeholder="Digite sua mensagem..."
+                    className="flex-1 p-2 sm:p-3 border border-gray-300 rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    value={userMessage}
+                    onChange={(e) => setUserMessage(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                  />
+                  <button 
+                    className="px-3 sm:px-4 py-2 sm:py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-sm sm:text-base font-medium transition-colors disabled:bg-gray-300"
+                    onClick={sendMessage}
+                    disabled={userMessage.trim() === ''}
+                  >
+                    Enviar
+                  </button>
                 </div>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-2">
-              <input
-                type="text"
-                placeholder="Escreva sua mensagem..."
-                className="flex-grow p-2 border rounded-lg"
-                value={userMessage}
-                onChange={(e) => setUserMessage(e.target.value)}
-              />
-              <button className="px-3 py-2 bg-blue-500 text-white rounded-lg" onClick={sendMessage}>
-                Enviar
-              </button>
+              </div>
             </div>
           </div>
         </div>

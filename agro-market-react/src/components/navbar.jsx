@@ -103,6 +103,12 @@ const Navbar = () => {
                       Vendas
                     </button>
                     <button
+                      onClick={() => navigate("/tela_doacao")}
+                      className="block w-full text-left px-4 py-2 hover:bg-gray-200"
+                    >
+                      Doações
+                    </button>
+                    <button
                       onClick={() => navigate("/configuracoes")}
                       className="block w-full text-left px-4 py-2 hover:bg-gray-200"
                     >
