@@ -61,7 +61,7 @@ const ChatBot = () => {
     <div className="relative">
       {/* Ícone do chat - posicionamento responsivo */}
       <div 
-        className="fixed bottom-24 right-1 cursor-pointer p=3 z-40 hover:scale-110 transition-transform" 
+        className="fixed bottom-24 right-4 cursor-pointer p=3 z-40 hover:scale-110 transition-transform" 
         onClick={() => setShowModal(true)}
       >
         <img src="images/bate-papo.png" alt="Ícone para abrir modal" className="w-10 h-10 sm:w-12 sm:h-12" />

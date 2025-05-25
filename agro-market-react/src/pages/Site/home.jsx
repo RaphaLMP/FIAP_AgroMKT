@@ -95,10 +95,10 @@ const Cart = ({ items, onRemoveFromCart }) => {
 const ProductCard = ({ src, title, stock, date, category, onAddToCart }) => {
   return (
     <div className={`bg-white shadow-lg rounded-lg overflow-hidden product ${category || ''}`}>
-      <img 
-        src={src.startsWith("images/") ? src : `images/${src}`} 
-        className="w-full h-40 sm:h-48 md:h-56 object-cover" 
-        alt={title} 
+      <img
+        src={src.startsWith("images/") ? src : `images/${src}`}
+        className="w-full h-40 sm:h-48 md:h-56 object-cover"
+        alt={title}
       />
       <div className="p-3 sm:p-4">
         <p className="text-sm sm:text-lg font-semibold">{title}</p>
@@ -254,11 +254,11 @@ const Home = () => {
 
         {/* Banner secundário */}
         <div className="relative p-4 sm:p-8 text-center bg-green mt-6 sm:mt-10 rounded-lg overflow-hidden h-32 sm:h-48">
-          <img 
-            src="images/mercado.jpg" 
-            alt="Anúncio" 
-            className="absolute inset-0 w-full h-full object-cover" 
-            style={{ filter: "brightness(0.6)" }} 
+          <img
+            src="images/mercado.jpg"
+            alt="Anúncio"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ filter: "brightness(0.6)" }}
           />
         </div>
 
@@ -275,9 +275,10 @@ const Home = () => {
         <Cart items={cartItems} onRemoveFromCart={removeFromCart} />
 
         {/* Vídeo responsivo */}
-        <div className="mt-8 text-center">
-          <h2 className="text-xl sm:text-2xl mb-4">Assista ao vídeo</h2>
-          <div className="relative pb-56.25 h-0 overflow-hidden max-w-full">
+
+        <div className="mt-5 w-full md:w-[640px] mx-auto">
+          <h2 className="text-xl sm:text-2xl text-center mb-4 sm:mb-6">Veja o Vídeo</h2>
+          <div className="relative aspect-video">
             <iframe
               className="absolute top-0 left-0 w-full h-full"
               src="https://www.youtube.com/embed/qrInF5qj6Sc"
